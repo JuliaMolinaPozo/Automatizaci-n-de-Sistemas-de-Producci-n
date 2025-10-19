@@ -1,0 +1,148 @@
+(DGWZ 0,200,-100,0,-10,0) ;Para definir directamente los limites
+
+T5 D5 M6;Le dices que herramienta es (T5), que corrección tiene (D5) y montar (M6)
+G17 G71 G90 G94
+F800 S5000 M3
+T05.02
+G0 Z5
+
+;Primera iteración con profundidad Z-5
+G41 T5.D5; Aplicar la corrección de la herramienta T5, por eso es como si fuera una clase
+G0 X200 Y-80
+G1 Z-5
+G1 X180
+G3 X160 Y-100 R20
+G1 X40
+G2 X0 Y-60 R40
+G0 X0 Y-60 Z5
+G40
+
+;Segunda iteracion con profundidad Z-10
+G42 T5.D5; Aplicar la corrección de la herramienta T5, por eso es como si fuera una clase
+G0 X200 Y-80 Z5
+G40
+G41 T5.D5
+G1 Z-10
+G1 X180
+G3 X160 Y-100 R20
+G1 X40
+G2 X0 Y-60 R40
+G1 Z5
+G40
+
+;Volver a la posicion inicial para cambiar de herramienta
+G1 X0 Y0 Z2
+M5 ;Apagar la herramienta
+T6 D6 M6
+F800 S5000 M3
+
+;Empezamos haziendo la G
+
+G00 X41Y-25 Z5
+G01 Z-5
+G01 X41Y-15
+
+;Primera curva de la G
+G00 X41Y-15 Z0
+G01 Z-5 F100
+G03 X13Y-15 I-14 J-22.1
+G01 X13Y-15 Z-5 
+
+;Continuamos con líneas rectas
+G01 X13Y-45
+
+;Siguiente curva de la G
+G00 X13Y-45 Z0
+G01 Z-5 F100
+G03 X41Y-45 I14 J22.1
+G00 X41Y-45 Z-5
+G01 X41Y-30
+G01 X28Y-30
+
+
+;Contorneamos la G
+G01 X28Y-35
+G01 X36Y-35
+G01 X36Y-40
+G02 X18Y-40 I-9 J5.6
+G01 X18Y-20
+G02 X36Y-20  I9 J-5.6
+G01 X36Y-25
+G01 X41Y-25
+
+G1 Z5
+; G terminada
+; Empezamos la T
+
+G00 X51Y-10
+G01 Z-5
+G01 X51Y-15
+G01 X62.5Y-15
+G01 X62.5Y-50
+G01 X67Y-50
+G01 X67 Y-15
+G01 X79 Y-15
+G01 X79 Y-10
+G01 X51 Y-10
+
+G01 Z5
+; T terminada
+; Empezamos el 2
+
+G00 X89 Y-24
+G01 Z-5
+G02 X117 Y-24 R14
+G02 X115 Y-31.21 R14
+G01 X99.55 Y-45
+G01 X117 Y-45
+G01 X117 Y-50
+G01 X89 Y-50
+G01 X110 Y-31.21
+G03 X112 Y-24 R9
+G03 X94 Y-24 R9
+G01 X89 Y-24
+G01 Z5
+
+;2 Terminado
+; Empezamos el 0
+;0 exterior
+G00 X132 Y-24
+G01 Z-5
+G02 X160 Y-24 R14
+G01 X160 Y-36
+G02 X132 Y-36 R14
+G01 X132 Y-24
+G01 Z5
+; 0 interior
+G00 X137 Y-24
+G01 Z-5
+G02 X155 Y-24 R9
+G01 X155 Y-36
+G02 X137 Y-36 R9
+G01 X137 Y-24
+G01 Z5
+;0 Teminado
+
+;Empezamos el 4
+G00 X187 Y-37.5
+G01 Z-5
+G01 X187 Y-50
+G01 X192 Y-50
+G01 X192 Y-10
+G01 X187 Y-10
+G01 X187 Y-33.5
+G01 X169 Y-33.5
+G01 X169 Y-10
+G01 X164 Y-10
+G01 X164 Y-37.5
+G01 X187 Y-37.5
+G01 Z5
+;4 Terminado
+
+
+G0 X200 Y-100 Z5 
+
+
+
+
+M30
